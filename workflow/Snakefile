@@ -1,0 +1,31 @@
+configfile: "config/config.yaml"
+include: "rules/alignment.smk"
+include: "rules/assembly.smk"
+include: "rules/read_mapping.smk"
+include: "rules/variant_calling.smk"
+include: "rules/gwas.smk"
+
+aln_name = config["alignment"]["outname"]
+preproccesed_ext = ["sorted", "dedup", "rg"]
+
+rule all:
+    input:
+        # multiple sequence alignment
+        # expand("output/mafft/{filename}.fasta", filename=aln_name),
+        # tree inference
+        expand("output/raxml/RAxML_bestTree.{filename}", filename=aln_name), 
+        # read assembly
+        # "output/spades/scaffolds.fasta",
+        # assembly QC
+        "output/quast",
+        # read mapping
+        # "output/bowtie/mapped_reads.sam",
+        # preprocessing
+        # expand("output/gatk/mapped_reads.{op}.bam", op=preproccesed_ext),
+        # variant calling
+        # "output/gatk/snps.vcf",
+        # variant annotation
+        "output/snpeff/snps.ann.vcf",
+        # GWAS
+        "output/gwas/stepwise.model.RData"
+        

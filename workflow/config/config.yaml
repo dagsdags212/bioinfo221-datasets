@@ -1,0 +1,24 @@
+alignment:
+  seqs: data/ncov.fasta # sequences to align
+  outname: ncov-out # MSA output filename
+
+raxml:
+  model: GTRCAT
+  seed: 12345
+  outdir: /home/dagsdags/masters/2024/1st_sem/BIOINFO221/workflow/output/raxml
+
+gwas:
+  dataset: listeria.csv # phenotype data
+
+assembly:
+  ref: data/ref.fasta # reference genome
+  reads:
+    - data/reads1.fq # forward reads
+    - data/reads2.fq # reverse reads
+
+mapping:
+  outname: mapped_reads # file name for mapped reads
+
+vc:
+  outname: snps # variant calling output filename
+  db: Geobacter_sulfurreducens_kn400 # query database
